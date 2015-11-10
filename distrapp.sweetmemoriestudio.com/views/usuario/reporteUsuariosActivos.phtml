@@ -1,0 +1,10 @@
+<div id="piechart" class="chart"></div>
+<?php //var_dump($this);?>
+    <script type="text/javascript">
+        
+        google.setOnLoadCallback(cargarChart(<?= $this->params["json_usuarios"]?>,"Usuarios roles")); 
+        $(window).resize(function(){
+            cargarChart(<?= $this->params["json_usuarios"]?>,"Usuarios roles"); 
+        })
+    </script>
+ 

@@ -1,0 +1,17 @@
+<!--<a href="<?= BASE?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+<?php // var_dump($this->params);?>
+<form method="post">
+    <br/>
+    <input  type="text" class="form-control" name="nombre" value="<?php if(isset($_POST['nombre'])){echo $_POST['nombre'];}?>" placeholder="Nombre" title="Ingrese nombre">
+    <input  type="text" class="form-control" name="telefono" value="<?php if(isset($_POST['telefono'])){echo $_POST['telefono'];}?>" placeholder="Teléfono" title="Ingrese telefono">
+    <input  type="text" class="form-control" name="direccion" value="<?php if(isset($_POST['direccion'])){echo $_POST['direccion'];}?>" placeholder="Direccion" title="Ingrese direccion">
+    <select class="form-control" name="idPersonaEncargada"  placeholder="Persona encargada" title="Ingrese persona encargada">
+        <option value></option>
+        <?php foreach($this->params["USUARIOS_CLIENTE"] as $key):?>
+            <option value="<?=$key["IDENTIFICADOR"]?>"><?=$key["NOMBRE"]?></option>
+        <?php endforeach;?>
+    </select>
+    <!--<input  type="text" class="form-control" name="idTipoMedicamento" value="<?php if(isset($_POST['idTipoMedicamento'])){echo $_POST['idTipoMedicamento'];}?>" placeholder="tipo Medicamento" title="Ingrese tipo medicamento">-->
+    
+    <input class="btn btn-info" type="submit" value="registrar medicamento"/>
+</form>

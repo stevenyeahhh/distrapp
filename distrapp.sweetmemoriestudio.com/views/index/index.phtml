@@ -1,0 +1,16 @@
+﻿﻿﻿<form action="<?=$this->controllerPath?>" method="post">
+    <div class="form-group">
+        <font color=red>*</font>
+        <input  type="text" class="form-control" id='usr' name="usuario" value="<?php if(isset($_POST['usuario'])){echo $_POST['usuario'];}?>" placeholder="USUARIO" title="Ingrese su usuario">
+	<font color=red>Este campo es obligatorio</font>
+    </div>
+    <div class="form-group">
+	<font color=red>*</font>
+        <input type="password" class="form-control" name="contrasena" value="<?php if(isset($_POST['constrasena'])){echo $_POST['constrasena'];}?>" placeholder="CONTRASEÑA" title="Recuerde que su contraseña debe de contener letras mayúsculas, minúsculas y números">
+	<font color=red>Este campo es obligatorio</font>
+    </div>
+	<a href="<?=$this->controllerPath?>recordarContrasena">¿No recuerda la contraseña?</a><br/><br/>
+        <input class="btn btn-info" type="submit" value="Iniciar sesión " />
+
+	<br/>
+</form>

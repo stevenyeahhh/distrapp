@@ -1,0 +1,13 @@
+<!--<a href="<?=BASE?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+<form method='post' name="f1" >
+	<?php
+		foreach ($this->params['USER_DATA'] as $key => $value) {
+			if(strtolower($key)!="estado" && strtolower($key)!="identificador" && strtolower($key)!="id_rol")
+			echo "<input class='form-control' type='text' name='".strtolower($key)."'  value='$value'/><BR/>";
+		}	?>	
+<input class="btn btn-info" type='button' id='btnGuardar'value='Guardar cambios'/>
+</form>
+<br/>
+<a href="<?=BASE?>preguntas/responder"><input type="button" class="btn btn-info" value="Responder preguntas de seguridad"/></a>
+
+<div id="dialog-confirm2" >  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Seguro que desea actualizar sus datos?</p></div>

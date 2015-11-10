@@ -1,0 +1,29 @@
+<?php $medicamento=$this->params[MEDICAMENTO];?>
+<!--<a href="<?= BASE ?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+<div class="table-responsive">	
+ <table class="table table-hover">	
+	<tr>
+		<td>ID_TIPO_MEDICAMENTO</td>
+		<td><?=$medicamento[ID_TIPO_MEDICAMENTO]?></td>
+	</tr>
+	<tr>
+		<td>FECHA_FABRICACION</td>
+		<td><?=$medicamento[FECHA_FABRICACION]?></td>
+	</tr>
+	<tr>
+		<td>FECHA_VENCIMIENTO</td>
+		<td><?=$medicamento[FECHA_VENCIMIENTO]?></td>
+	</tr>
+	<tr>
+		<td>CANTIDAD</td>
+		<td><?=$medicamento[CANTIDAD]?></td>
+	</tr>
+	<tr>
+		<td>BODEGA</td>
+		<td><?=$medicamento[BODEGA]?></td>
+	</tr>
+	<tr>
+		<td>ESTADO</td>
+		<td><?=$medicamento[ESTADO]?></td>
+	</tr>
+</table>

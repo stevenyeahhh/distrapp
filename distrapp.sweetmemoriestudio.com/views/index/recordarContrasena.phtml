@@ -1,0 +1,39 @@
+<!--<a href="<?= BASE ?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+<form method="post">
+    <?php
+//    var_dump($this->params);
+//    ECHO "<HR/>";
+    if ( isset($this->params["USER_DATA"])) {
+        $preguntas =$this->params["USER_DATA"];
+        ?>
+        <input type="hidden" name="tipo" value="2"/>
+        <input type="hidden" name="usuario" value="<?= $this->params["USER_ID"] ?>"/>
+        <?php
+        foreach ($preguntas as $key => $value) {
+            ?>
+
+            <label for="preguntas<?= $value["ID_PREGUNTAS"] ?>"><?= $value["DESCRIPCION"] ?></label>
+            <input class="form-control" type="text" name="preguntas<?= $value["ID_PREGUNTA"] ?>" id="preguntas<?= $value["ID_PREGUNTA"] ?>"/> <br/>
+            <?php
+        }
+    } else {
+        if ($this->params["usuario"]) {
+            ?>
+            <input type="hidden" name="tipo" value="3"/>
+            <input type="hidden" name="usuario" value="<?= $this->params["usuario"] ?>"/>
+
+            <label for="contrasena">Contraseña</label>
+            <input type="text" class="form-control" name="contrasena" id="contrasena"/>
+
+        <?php
+    } else {
+        ?>
+            <input type="hidden" name="tipo" value="1"/>
+            <input type="text" name="id" placeholder="ID" class="form-control"/>
+
+        <?php
+    }
+}
+?>
+    <input type="submit" class="btn btn-info"value="SIGUIENTE"/>
+</form>
