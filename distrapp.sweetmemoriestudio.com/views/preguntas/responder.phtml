@@ -1,0 +1,21 @@
+<!--<a href="<?= BASE ?>usuario/modificar"><input type="button" value="volver" class="btn btn-info"/></a><br/>-->
+<form class="form-group" method="post">
+
+    <table class="table table-hover">
+        <tr>
+            <th>Preguntas</th>
+            <th>Respuesta</th>
+        </tr>
+        <?php foreach ($this->params["PREGUNTAS"] as $key => $value): ?>
+            <tr>
+                <td><?= $value["DESCRIPCION"] ?></td>
+                <td>
+                    <?= $value["RESPUESTA"] ? $value["RESPUESTA"] : "<input type='text' class='form-control' name='pregunta$value[ID_PREGUNTA]'/>" ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <tr>
+            <td><input type="submit" class="btn btn-info" value="Guardar respuestas"/></td>
+        </tr>
+    </table>
+</form>

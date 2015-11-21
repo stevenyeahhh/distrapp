@@ -1,0 +1,19 @@
+<!--<a href="<?=BASE?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+﻿﻿<form method="post">
+	<font color=red>*</font>
+	<input  type="text" class="form-control" name="nombre" value="<?php if(isset($_POST['nombre'])){echo $_POST['nombre'];}?>" placeholder="NOMBRE" title="Ingrese su Nombre">
+	
+	<font color=red>*</font>
+	<input  type="text" class="form-control" name="apellido" value="<?php if(isset($_POST['apellido'])){echo $_POST['apellido'];}?>" placeholder="APELLIDO" title="Ingrese su apellido">
+	
+	<font color=red>*</font>
+	<input  type="text"class="form-control"  name="id" value="<?php if(isset($_POST['id'])){echo $_POST['id'];}?>" placeholder="ID" title="Ingrese su ID">
+	
+	<font color=red>*</font>
+	<input  type="text" class="form-control" name="contrasena" value="<?php if(isset($_POST['contrasena'])){echo $_POST['contrasena'];}?>" placeholder="Contraseña" title="Crea tu contraseña">
+	
+	<font color=red>*</font>	
+	<input  type="text" class="form-control" name="telefono" value="<?php if(isset($_POST['telefono'])){echo $_POST['telefono'];}?>" placeholder="teléfono" title="Ingrese su teléfono">
+        </br>
+	<input class="btn btn-info" type="submit" value="Crear cuenta"/>
+</form>

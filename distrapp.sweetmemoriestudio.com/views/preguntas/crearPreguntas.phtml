@@ -1,0 +1,16 @@
+<!--<a href="<?= BASE ?>usuario"><input type="button" value="volver" class="btn  btn-info"/></a><br/><br/>-->
+
+<form method="post">
+    <input title="campo obligatorio" type="text" name="descripcion" class="form-control"/>
+    <input type="submit" value="guardar" class="btn  btn-info"/>
+</form>
+<table class="table table-hover">
+    <tr>
+        <th>Preguntas</th>
+    </tr>
+    <?php foreach ($this->params["PREGUNTAS"] as $key => $value): ?>
+        <tr>
+            <td><?= $value["DESCRIPCION"] ?></td>
+        </tr>	
+    <?php endforeach; ?>
+</table>

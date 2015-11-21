@@ -1,0 +1,25 @@
+<?php //var_dump($this->params[MEDICAMENTOS])?>
+<!--<a href="<?=BASE?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+<div class="table-responsive">	
+ <table class="table table-hover">	
+  <tr>	
+  <th>ID_TIPO_MEDICAMENTO</th>
+  <th>FECHA_FABRICACION</th>			
+  <th>FECHA_VENCIMIENTO</th>	
+  <th>CANTIDAD</th>	
+  <th>BODEGA</th>		
+  <th>ESTADO</th>	
+    
+  </tr>		
+   <?php 	
+   $medicamentos=$this->params['MEDICAMENTOS'];		
+   for($i=0;$i<count($medicamentos);$i++):				?>	
+  <tr>	
+     <td><a href="<?=$this->controllerPath?>consultarMedicamento/<?=$medicamentos[$i]['ID_MEDICAMENTO']?>"> <?=$medicamentos[$i]['ID_TIPO_MEDICAMENTO']?></a></td>	
+     <td><?=$medicamentos[$i]['FECHA_FABRICACION']?></td>		
+     <td><?=$medicamentos[$i]['FECHA_VENCIMIENTO']?></td>	
+     <td><?=$medicamentos[$i]['CANTIDAD']?></td>	
+     <td><?=$medicamentos[$i]['BODEGA']?></td>	
+     <td><?=$medicamentos[$i]['ESTADO']?></td>	
+  </tr>				
+   <?php  endfor;		?>	</table></div>

@@ -1,0 +1,20 @@
+<!--<a href="<?=BASE?>"><input class="btn btn-info" type="button" value="volver"/></a><br/><br/>-->
+<?php // var_dump($this->params);?>
+<form method="post">
+    <select class="form-control" name="idTipoMedicamento" >
+        <option value></option>
+        <?php foreach($this->params["TIPO_MEDICAMENTO_DATA"] as $key):?>
+            <option value="<?=$key["ID_TIPO_MEDICAMENTO"]?>"><?=$key["DESCRIPCION"]?></option>
+        <?php endforeach;?>
+    </select>
+    <!--<input  type="text" class="form-control" name="idTipoMedicamento" value="<?php if(isset($_POST['idTipoMedicamento'])){echo $_POST['idTipoMedicamento'];}?>" placeholder="tipo Medicamento" title="Ingrese tipo medicamento">-->
+    <br/>
+    <input  type="text" class="form-control" name="fechaFabricacion" value="<?php if(isset($_POST['fechaFabricacion'])){echo $_POST['fechaFabricacion'];}?>" placeholder="fecha fabricación" title="Ingrese fecha fabricacion">
+    <br/>
+    <input  type="text" class="form-control" name="fechaVencimiento" value="<?php if(isset($_POST['fechaVencimiento'])){echo $_POST['fechaVencimiento'];}?>" placeholder="fecha vencimiento" title="Ingrese fecha Vencimiento">
+    <br/>
+    <input  type="text" class="form-control" name="cantidad" value="<?php if(isset($_POST['cantidad'])){echo $_POST['cantidad'];}?>" placeholder="cantidad" title="Ingrese cantidad">
+    <br/>
+    <input  type="text" class="form-control" name="bodega" value="<?php if(isset($_POST['bodega'])){echo $_POST['bodega'];}?>" placeholder="bodega" title="Ingrese bodega">
+    <input class="btn btn-info" type="submit" value="registrar medicamento"/>
+</form>

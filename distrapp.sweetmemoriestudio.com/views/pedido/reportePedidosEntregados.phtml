@@ -1,0 +1,8 @@
+<!--<a class="report"></a>-->
+<div id="piechart" class="chart"></div>
+<script type="text/javascript">        
+    google.setOnLoadCallback(cargarChart2(<?= $this->params["json_pedidos_entregados"]?>,"Pedidos entregados")); 
+    $(window).resize(function(){
+        cargarChart2(<?= $this->params["json_pedidos_entregados"]?>,"Pedidos entregados"); 
+    })
+</script>

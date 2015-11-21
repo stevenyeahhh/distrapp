@@ -1,0 +1,83 @@
+<?php $pedido = $this->params["PEDIDO"]->fetch(PDO::FETCH_ASSOC); ?>
+<script>$(document).ready(function() {
+        crearBootstrapSwitch(".slider-tabla", "desactivarPedido");
+        $("[name=repartidor]").on("change", function() {
+//                    alert("hola")
+//                    $(this).val()
+            $.ajax({
+                url: CONTROLLERPATH + "cambiarRepartidor",
+                data: {idRepartidor: $(this).val(), idPedido:<?= $pedido["ID PEDIDO"] ?>},
+                method: 'post',
+                success: function(success) {
+//                            console.log(success)
+//                            console.log(CONTROLLERPATH+"cambiarRepartidor"+"Hola ")
+                    $("<div class='mensaje alert alert-success'></div>").insertBefore("h1").text(success).append('<button type="button" class="close" data-dismiss="alert">&times;</button>').show().delay(100).fadeOut(5000);
+                },
+                error: function(error) {
+                    console.log(error)
+                    $("<div class='mensaje alert alert-success'></div>").insertBefore("h1").text(success).append('<button type="button" class="close" data-dismiss="alert">&times;</button>').show().delay(100).fadeOut(5000);
+                }
+            });
+
+        })
+    })
+
+
+</script>
+<?php //var_dump($this);?>
+<?php ($repartidores = $this->params["USUARIOS_REPARTIDORES"]) ?>
+<form method='post'>
+    <div class="table-responsive">	
+        <table class="table table-hover">	
+            <tr>
+                <td>NOMBRE EMPRESA</td>
+                <td><?= $pedido["NOMBRE EMPRESA"] ?></td>
+            </tr>
+            <tr>
+                <td>USUARIO REPARTIDOR</td>
+                <td>
+                    <?php if ($this->params["ID_ROL"] == ROL_ADMINISTRADOR) { ?>
+                        <select name="repartidor" class="form-control" > 
+                            <?php foreach ($repartidores as $key => $value): ?>
+                                <?php
+                                $selected = "";
+                                if ($pedido["USUARIO REPARTIDOR"] == $value["NOMBRE"] . " " . $value["APELLIDO"]):
+                                    $selected = "selected";
+                                endif;
+                                ?>
+
+                                <option <?= $selected ?> value='<?= $value["IDENTIFICADOR"]; ?>'><?= $value["NOMBRE"] . " " . $value["APELLIDO"]; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                        <?php }else{
+                          echo   $pedido["USUARIO REPARTIDOR"] ;
+                        }?>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>USUARIO QUE REGISTRA</td>
+                <td><?= $pedido["USUARIO QUE REGISTRA"] ?></td>
+            </tr>
+            <tr>
+                <td>USUARIO QUE ASIGNA</td>
+                <td><?= $pedido["USUARIO QUE ASIGNA"] ?></td>
+            </tr>
+            <tr>
+                <td>FECHA REGISTRO</td>
+                <td><?= $pedido["FECHA REGISTRO"] ?></td>
+            </tr>
+            <tr>
+                <td>FECHA ENTREGA</td>
+                <td><?= $pedido["FECHA ENTREGA"] ?></td>
+            </tr>
+            <tr>
+                <td>ENTREGADO</td>
+                <td>                
+                    <input type='checkbox' class='slider-tabla'  <?= $pedido["ENTREGADO"] == "NO" ? "" : "checked" ?> value='<?= $pedido["ID PEDIDO"] ?>'/>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</form>
