@@ -1,1 +1,8 @@
- <?php $this->crearTabla($this->params["PEDIDO"],array(),"","pedido/consultarPedido","desactivarPedido")?>
+ <?php // $this->crearTabla($this->params["PEDIDO"],array(),"","pedido/consultarPedido","desactivarPedido")?>
+<?php $this->crearTablaRegistroUnico($this->params['DATA'],  array(),""); ?>
+<br>
+<b>Detalles del pedido</b>
+<?php 
+
+$this->crearTabla($this->params["DETALLES_PEDIDO"],array(),"","detallesPedido/consultar","detallesPedido/desactivarDetalles",false)
+?>

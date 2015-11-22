@@ -16,8 +16,9 @@ class PedidoController extends Controller{
     private $tipoMedicamento;
     private $empresa;
     private $usuario;
+    private $detallesPedido;
     public function __construct() {
-        parent::__construct();
+        parent::__construct();    
         if (!$this->sesionIniciada()) {
 
             header("Location:" . BASE . DS . 'index' . DS);
@@ -26,6 +27,7 @@ class PedidoController extends Controller{
         $this->tipoMedicamento= $this->loadModel("TipoMedicamento");
         $this->empresa= $this->loadModel("Empresa");
         $this->usuario= $this->loadModel("Usuario");
+        $this->detallesPedido= $this->loadModel("DetallesPedido");
         $this->crearMenu($menu2, "pedido/consultarPedidos", "Consultar pedidos");
         $this->crearMenu($menu2, "pedido/registrarPedido", "Crear Pedido");
         $this->view->setMenu2($menu2);
@@ -88,11 +90,12 @@ class PedidoController extends Controller{
     }
     
     public function consultarPedido($idPedido) {  
-        $this->crearMenu($menu2, "administrador/registrarPedido", "Crear pedido");
-        $this->crearMenu($menu2, "administrador/consultarPedido/$idPedido", "Consultar pedido");
-        $this->crearMenu($menu2, "administrador/actualizarPedido/$idPedido", "Actualizar pedido");
+//        $this->crearMenu($menu2, "pedido/registrarPedido", "Crear pedido");
+        $this->crearMenu($menu2, "pedido/consultarPedido/$idPedido", "Consultar pedido '$idPedido'");
+        $this->crearMenu($menu2, "pedido/actualizarPedido/$idPedido", "Actualizar pedido '$idPedido'");
         $this->view->setMenu2($menu2);
-        $this->view->setParams($this->pedido->getPedidoPorId($idPedido),'PEDIDO');
+        $this->view->setParams($this->pedido->getPedidoPorId($idPedido)->fetch(PDO::FETCH_ASSOC ),'DATA');
+        $this->view->setParams($this->pedido->getDetallesPedido($idPedido),'DETALLES_PEDIDO');
         $this->view->renderize("consultarPedido");
     }
     public function desactivarPedido() {

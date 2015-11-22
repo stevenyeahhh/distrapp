@@ -31,14 +31,9 @@ $(document).ready(function() {
 //    $(".report").append("<img style='width:40px;height:40px' src='"+BASE+"/img/excel.png'></div>");
     
     $(".slider-tabla").bootstrapSwitch();
-    $(document).on("click", ".btn-control-agregar", function(ev) {
-//        var txtAgregar='<br/><select class="form-control col-sm-3" name="tipoMedicamentos[]"  placeholder="Medicamentos" title="Ingrese medicamentos">';
-//        txtAgregar+=$("[name='tipoMedicamentos[]']").html();
-//        txtAgregar+='</select>';
-
-
-        $(".contenedor-forms").append("<tr>" + $(".tr-original").html() + "</tr>")
-    });
+//    $(document).on("click", ".btn-control-agregar", function(ev) {
+//        $(".contenedor-forms").append("<tr>" + $(".tr-original").html() + "</tr>")
+//    });
 
     $("a[href*=eliminar]").on("click", function(ev) {
         console.log("Entra1");
@@ -82,9 +77,10 @@ function crearBootstrapSwitch(clase, url) {
 //            alert($(this).val());
         //console.log(event);
         //console.log(state);
-//            alert(CONTROLLERPATH + url);
+//            alert(url);
         $.ajax({
-            url: CONTROLLERPATH + url,
+//            url: CONTROLLERPATH + url,
+            url: BASE+url,
             type: "POST",
             data: {
                 usuario: $(this).val(),

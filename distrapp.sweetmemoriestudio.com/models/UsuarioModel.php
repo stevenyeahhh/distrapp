@@ -225,6 +225,12 @@ class UsuarioModel extends Model {
         return Singleton::getInstance()->db->selectQuery("USUARIO u join ROL r on (u.id_rol=r.id_rol) ", " count(*)CNT , r.descripcion","1 group by r.descripcion" )->fetchAll(PDO::FETCH_ASSOC);
 //        return Singleton::getInstance()->db->selectQuery("USUARIO", "SUM(case WHEN id_rol=1 THEN 1 ELSE 0 END )\"ADMINISTRADOR\", SUM( case WHEN id_rol=2 THEN 1 ELSE 0 END ) \"REPARTIDORES\", SUM( case WHEN id_rol=2 THEN 1 ELSE 0 END ) \"CLIENTE\"" , "")->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getUsuarioPorId($idUsuario) {
+        return Singleton::getInstance()->db->selectQuery("USUARIO", "NOMBRE,APELLIDO,TELEFONO, CASE WHEN ESTADO=1 THEN 'ACTIVO' ELSE 'NO ACTIVO' END AS ESTADO", " IDENTIFICADOR='$idUsuario'");
+    }
+    public function actualizarRolAdministrador() {
+        return Singleton::getInstance()->db->updateQuery("USUARIO","NOMBRE='$this->nombre',APELLIDO='$this->apellido',TELEFONO='$this->telefono'", " identificador ='$this->identificador'");
+    }
 }
 
 ?>

@@ -32,23 +32,11 @@ abstract class Controller {
                     break;
                 default:
                     break;
-            }
-//            $menu[] = array('url' => BASE . "usuario/consultar",
-//                'descripcion' => 'Consulta de datos');
-//            $menu[] = array('url' => BASE . "usuario/modificar",
-//                'descripcion' => 'Modificar datos');
-//            $menu[] = array('url' => BASE . "usuario/eliminar",
-//                'descripcion' => 'Eliminar cuenta');
-//            $menu[] = array('url' => BASE . "usuario/cerrarSesion",
-//                'descripcion' => 'Cerrar sesión ');
-//                ----Todo el menú
-//                
+            }                
             $this->crearMenu($menu, "usuario/consultar", 'Consulta de datos');
             $this->crearMenu($menu, "usuario/modificar", 'Modificar datos');
             $this->crearMenu($menu, "usuario/eliminar", 'Eliminar cuenta');
             $this->crearMenu($menu, "usuario/cerrarSesion", 'Cerrar sesión ');
-
-
             $this->view->setMenu($menu);
         }
     }
@@ -56,13 +44,8 @@ abstract class Controller {
     public function loadModel($model) {
 
         $model = $model . 'Model';
-
-        //echo $controllerPath=ROOT.'models'.DS.$model.'.php';
-
         if (is_readable($controllerPath = ROOT . 'models' . DS . $model . '.php')) {
-
             include_once $controllerPath = ROOT . 'models' . DS . $model . '.php';
-
             return new $model;
         }
     }

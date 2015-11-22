@@ -78,4 +78,7 @@ class PedidoModel extends Model{
     public function cambiarRepartidor($idRepartidor,$pedido) {
         return Singleton::getInstance()->db->updateQuery(" PEDIDO ", " ID_REPARTIDOR='$idRepartidor' ", " ID_PEDIDO ='$pedido' ")->rowCount();
     }
+    public function getDetallesPedido($idPedido) {
+        return Singleton::getInstance()->db->selectQuery("DETALLES_PEDIDO DP JOIN TIPO_MEDICAMENTO TM ON(TM.ID_TIPO_MEDICAMENTO=DP.ID_TIPO_MEDICAMENTO)","DP.ID_DETALLES_PEDIDO,TM.DESCRIPCION,DP.CANTIDAD,TM.COSTO * DP.CANTIDAD VALOR","DP.ID_PEDIDO='$idPedido'");
+    }
 }

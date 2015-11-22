@@ -77,7 +77,8 @@
 
     queue(function(next) {
       // Set positionUsing if it hasn't already been set
-      if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
+//      console.log(NProgress.getPositioningCSS())
+      if (Settings.positionUsing === '' && NProgress.getPositioningCSS()!=='') Settings.positionUsing = NProgress.getPositioningCSS();
 
       // Add transition
       css(bar, barPositionCSS(n, speed, ease));
@@ -274,24 +275,34 @@
 
   NProgress.getPositioningCSS = function() {
     // Sniff on document.body.style
-    var bodyStyle = document.body.style;
+//    document.body.style="";
+//    console.log(document.body.style)
+//    console.log("Hola")
+//    var bodyStyle =document.body.style;
+    var bodyStyle ;
+    if(document.body ==null){
+        return '';
+    }else{
+        bodyStyle=document.body.style
+        // Sniff prefixes
+        var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
+                           ('MozTransform' in bodyStyle) ? 'Moz' :
+                           ('msTransform' in bodyStyle) ? 'ms' :
+                           ('OTransform' in bodyStyle) ? 'O' : '';
 
-    // Sniff prefixes
-    var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
-                       ('MozTransform' in bodyStyle) ? 'Moz' :
-                       ('msTransform' in bodyStyle) ? 'ms' :
-                       ('OTransform' in bodyStyle) ? 'O' : '';
-
-    if (vendorPrefix + 'Perspective' in bodyStyle) {
-      // Modern browsers with 3D support, e.g. Webkit, IE10
-      return 'translate3d';
-    } else if (vendorPrefix + 'Transform' in bodyStyle) {
-      // Browsers without 3D support, e.g. IE9
-      return 'translate';
-    } else {
-      // Browsers without translate() support, e.g. IE7-8
-      return 'margin';
+        if (vendorPrefix + 'Perspective' in bodyStyle) {
+          // Modern browsers with 3D support, e.g. Webkit, IE10
+          return 'translate3d';
+        } else if (vendorPrefix + 'Transform' in bodyStyle) {
+          // Browsers without 3D support, e.g. IE9
+          return 'translate';
+        } else {
+          // Browsers without translate() support, e.g. IE7-8
+          return 'margin';
+        }
     }
+//    console.log("Hola2")
+
   };
 
   /**

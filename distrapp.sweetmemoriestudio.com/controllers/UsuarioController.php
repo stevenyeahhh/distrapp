@@ -20,9 +20,9 @@ class UsuarioController extends Controller {
         $this->view->setParams($this->usuario->getUsuario($this->getSesionVar('IDENTIFICADOR')), 'USER_DATA');
         
         $this->crearMenu($menu2, "usuario/registrar", "Crear usuario");
-        $this->crearMenu($menu2, "usuario/consultarUsuarios", "Consultar usuarios");
         $this->crearMenu($menu2, "usuario/crearReporteUsuariosActivos", "Usuario activos");
         $this->crearMenu($menu2, "usuario/crearReporteUsuariosPorRoles", "Usuarios por roles");
+        $this->crearMenu($menu2, "usuario/consultarUsuarios", "Consultar usuarios");
         $this->view->setMenu2($menu2);
     }
 
@@ -273,6 +273,39 @@ class UsuarioController extends Controller {
         $this->view->setParams(json_encode($this->usuario->getUsuariosCountPorRoles()), 'json_usuarios_roles'); 
 //        ECHO "</PRE>";
         $this->view->renderize('reporteUsuariosRoles');
+    }
+    public function consultarUsuario($idUsuario) {
+        $this->crearMenu($menu2, "usuario/consultarUsuario/$idUsuario", "Consulta usuario '$idUsuario'");
+        $this->crearMenu($menu2, "usuario/actualizarUsuario/$idUsuario", "Actualizar usuario '$idUsuario'");
+        $this->view->setMenu2($menu2);
+        
+        $usuario=$this->usuario->getUsuarioPorId($idUsuario)->fetch(PDO::FETCH_ASSOC);
+        $this->view->setTitle("Consultar Usuario '$idUsuario'");
+        $this->view->setParams($usuario,'DATA');
+        $this->view->renderize("consultarUsuario");
+       
+    }
+    public function actualizarUsuario($idUsuario) {
+        $this->crearMenu($menu2, "usuario/consultarUsuario/$idUsuario", "Consulta usuario '$idUsuario'");
+        $this->crearMenu($menu2, "usuario/actualizarUsuario/$idUsuario", "Actualizar usuario '$idUsuario'");
+        $this->view->setMenu2($menu2);
+        if($_POST){
+            extract($_POST);
+            $this->usuario->setIdentificador($idUsuario);
+            $this->usuario->setNombre($nombre);
+            $this->usuario->setApellido($apellido);
+            $this->usuario->setTelefono($telefono);
+            if($this->usuario->actualizarRolAdministrador()){
+                $this->view->setMensaje("Actualización exitosa");
+            }else{
+                $this->view->setError("Error");                
+            }
+        }        
+        $usuario=$this->usuario->getUsuarioPorId($idUsuario)->fetch(PDO::FETCH_ASSOC);
+        $this->view->setTitle("Actualizar Usuario '$idUsuario'");
+        $this->view->setParams($usuario,'DATA');
+        $this->view->renderize("actualizarUsuario");
+       
     }
 //////////////////////////////
 }

@@ -42,7 +42,7 @@ class TipoMedicamentoModel extends Model{
     
     public function insertTipoMedicamento() {
         return $this->getDb()->insertQuery("TIPO_MEDICAMENTO", $this->campos, 
-                "'$this->codigoBarras','$this->descripcion'.'$this->costo'");
+                "'$this->codigoBarras','$this->descripcion','$this->costo'");
     }
     public function selectTipoMedicamentos() {
         return $this->getDb()->selectQuery("TIPO_MEDICAMENTO", "*", "")->fetchAll(PDO::FETCH_BOTH);        

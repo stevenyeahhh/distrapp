@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of TipoMedicamentoModel
- *
- * @author jcaperap
- */
 class TipoMedicamentoController extends Controller { 
     private $tipoMedicamento;
     public function __construct() {
@@ -38,17 +27,16 @@ class TipoMedicamentoController extends Controller {
 
             $this->tipoMedicamento->setCodigoBarras($codigoBarras);
             $this->tipoMedicamento->setDescripcion($descripcion);
+            $this->tipoMedicamento->setCosto($costo);
 
             if ($this->tipoMedicamento->insertTipoMedicamento()) {
                 $this->view->setMensaje("Registro éxitoso");
             } else {
                 $this->view->setError("Error");
             }
-        } else {
-            
+        } else {            
         }
         $this->view->setTitle("Registrar tipo medicamento");
-//				$this->view->setJs(array('validate'));
         $this->view->renderize('registrarTipoMedicamento');
     }
 
@@ -78,5 +66,4 @@ class TipoMedicamentoController extends Controller {
         $this->view->renderize('reporteTipoMedicamentos');
     
     }
-//put your code here
 }
