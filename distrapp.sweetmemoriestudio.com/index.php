@@ -21,7 +21,7 @@ try {
 } catch (Exception $e) {
     var_dump($e);
 }
-echo "prueba";
+//echo "prueba";
 
 //use Facebook\FacebookSession;
 //use Facebook\FacebookRedirectLoginHelper;
